@@ -1,0 +1,26 @@
+.box {
+  display: flex;
+  width: 70vw;
+
+  margin: auto;
+  margin-top: 20px;
+}
+
+.box__post{
+  text-align: start;
+}
+
+.box__title {
+  color: #363636;
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.box__button-detais {
+  margin-top: 20px;
+}
+
+.box__button-add {
+  margin-top: 30px;
+  width: 70vw
+}

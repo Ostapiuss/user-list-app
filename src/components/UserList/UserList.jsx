@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUsers } from'../../api';
 import { showPost } from '../../redux/reducers/postReducers'
@@ -26,7 +27,7 @@ export const UserList = () => {
       </thead>
       <tbody>
         {users.map(user => (
-          <tr>
+          <tr key={user.id}>
             <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
@@ -34,11 +35,15 @@ export const UserList = () => {
             <td>
               <button
                 className="button is-primary"
-                onClick={() => {
-                  dispatch(showPost(user));
-                }}
               >
-                POST
+                <Link
+                  to="/details"
+                  onClick={() => {
+                    dispatch(showPost(user));
+                  }}
+                >
+                  POST
+                </Link>
               </button>
             </td>
           </tr>

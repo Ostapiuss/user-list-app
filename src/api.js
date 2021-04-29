@@ -12,3 +12,7 @@ export const getUsers = (endPoint) => {
 export const getPost = (endPoint) => {
   return request(endPoint);
 }
+
+export const getComments = (endPoint) => {
+  return request(endPoint);
+}
