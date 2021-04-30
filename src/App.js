@@ -4,7 +4,6 @@ import { UserList } from './components/UserList'
 import { UserDetails } from './components/userDetails';
 import { PostDetails } from './components/PostDetails';
 import './App.css';
-import 'bulma/css/bulma.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App = () => {

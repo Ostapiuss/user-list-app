@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-
 import { Modal, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
 
-export const ModalAddPost = ({ isOpen, onChangeOpenModal, newId, onAddPost }) => {
-  const [nameField, setNameField] = useState('');
-  const [postField, setPostField] = useState('');
+export const EditPost = ({isOpen, onCloseModal}) => {
+  const [newTitle, setNewTitle] = useState('');
+  const [newBody, setNewBody] = useState('');
+  const post = useSelector(state => state.postDetails.details);
 
-  const userPosts = useSelector(state => state.post.currentPost)
+  useEffect(() => {
+    setNewTitle(post.title);
+    setNewBody(post.body);
+  }, []);
 
-  const addPost = () => {
-    onAddPost({
-      userId: userPosts.id,
-      id: newId,
-      title: nameField,
-      body: postField,
-    });
-    onChangeOpenModal(false);
+
+  const closeEditWndow = () => {
+    onCloseModal(false);
   }
 
-  const closeModalWindow = () => {
-    onChangeOpenModal(false)
-  }
+  // const EditPost = () => {
+
+  // }
 
   return (
-
     <Modal show={isOpen}>
-        <Modal.Header closeButton onClick={closeModalWindow}>
+        <Modal.Header
+          closeButton
+          onClick={closeEditWndow}
+        >
           <Modal.Title>ADD NEW POST</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -35,9 +35,10 @@ export const ModalAddPost = ({ isOpen, onChangeOpenModal, newId, onAddPost }) =>
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="email"
-                value={nameField}
+                name="title"
+                value={newTitle}
                 onChange={(event) => {
-                  setNameField(event.target.value)
+                  setNewTitle(event.target.value);
                 }}
               />
               <Form.Text className="text-muted">
@@ -50,28 +51,33 @@ export const ModalAddPost = ({ isOpen, onChangeOpenModal, newId, onAddPost }) =>
               <FormControl
                 as="textarea"
                 aria-label="With textarea"
-                value={postField}
+                name="body"
+                value={newBody}
                 onChange={(event) => {
-                  setPostField(event.target.value)
+                  setNewBody(event.target.value);
                 }}
               />
             </InputGroup>
-            <Form.Text className="text-muted">
+            <Form.Text
+              className="text-muted"
+            >
                 Please enter the post
             </Form.Text>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModalWindow}>
+          <Button
+            variant="secondary"
+            onClick={closeEditWndow}
+          >
             Close
           </Button>
           <Button
             variant="primary"
-            onClick={addPost}
           >
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
   )
-};
+}

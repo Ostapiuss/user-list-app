@@ -1,0 +1,11 @@
+.current-post {
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+
+.comments__list {
+  width: 400px;
+}

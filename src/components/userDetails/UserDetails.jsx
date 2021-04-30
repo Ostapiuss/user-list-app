@@ -26,6 +26,8 @@ export const UserDetails = () => {
       });
   }, []);
 
+  console.log(userPosts);
+
   return (
     <>
       <div className="content is-large">
